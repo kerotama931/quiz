@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour {
+public class TitleManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+        Screen.SetResolution(1024, 768, false);
 	}
 	
 	// Update is called once per frame
