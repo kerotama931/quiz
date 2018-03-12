@@ -3,35 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MapManager : MonoBehaviour {
-
-
-    private GameObject mainCamera;
-
-    public GameObject player;
     public GameObject backGround;
     public GameObject backGround_right_top;
     public GameObject backGround_left_top;
-    public GameObject[] Square;
+    public GameObject[] Square = new GameObject[8];
+    public SquareManager squareManager;
 
     private Vector2 MousePosDownPrev;   /* マウス押下中の座標（ひとつ前） */
     private Vector2 MousePosDown;       /* マウス押下中の座標 */
 
+    const float DRAG_RATE = 30.0f;
+
 	// Use this for initialization
 	void Start () {
-        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-        player = GameObject.FindGameObjectWithTag("Player");      /* プレイヤー情報初期化 */
         backGround = GameObject.Find("BackImage");
         backGround_right_top = GameObject.Find("CameraRangeRightTop");
 
         MousePosDownPrev = new Vector2(0.0f, 0.0f);     /* マウス押下中座標(ひとつ前)の更新 */
         MousePosDown = new Vector2(0.0f, 0.0f);         /* マウス押下中座標の更新 */
 
-        player.transform.position = Square[0].transform.position;
-
 }
 
-// Update is called once per frame
-void Update () {
+    // Update is called once per frame
+    void Update () {
         Vector2 diffVec;
 
         /*マウス押下時処理 */
@@ -49,26 +43,33 @@ void Update () {
 
             diffVec = MousePosDown - MousePosDownPrev;
 
-            this.transform.position = new Vector3(Mathf.Clamp(transform.position.x - diffVec.x / 20.0f, 0.0f, backGround_right_top.transform.position.x), transform.position.y, transform.position.z);
+            this.transform.position = new Vector3(Mathf.Clamp(transform.position.x - diffVec.x / DRAG_RATE, 0.0f, backGround_right_top.transform.position.x), transform.position.y, transform.position.z);
 
             MousePosDownPrev = Input.mousePosition;
         }
     }
+
+    public void PushSquare()
+    {
+
+    }
 }
 
 
-public class Player
+public class SquareManager
 {
-    private Vector2 vec2_Pos;
+    private GameObject Square;
+    private List<int> nextSquareList = new List<int>();
 
-    public Player()
+    SquareManager(GameObject square, int[] nextSquare)
     {
-        vec2_Pos = new Vector2(0.0f, 0.0f);
-    }
+        Square = square;
 
-    public void SetPlayerPos(Vector2 pos)
-    {
-        vec2_Pos = pos;
+        int i;
+        for (i = 0; i < nextSquare.Length; i++)
+        {
+            nextSquareList.Add(nextSquare[i]);
+        }
     }
 
 };

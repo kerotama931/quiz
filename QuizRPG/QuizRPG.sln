@@ -1,7 +1,7 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizRPG", "Assembly-CSharp.csproj", "{B7303A27-6B30-94D0-C18D-53C93DDAD92F}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizRPG", "QuizRPG.csproj", "{6942490A-DEEC-C4D1-A4A7-86EC0ACFEE29}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,15 +9,12 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B7303A27-6B30-94D0-C18D-53C93DDAD92F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B7303A27-6B30-94D0-C18D-53C93DDAD92F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B7303A27-6B30-94D0-C18D-53C93DDAD92F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B7303A27-6B30-94D0-C18D-53C93DDAD92F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6942490A-DEEC-C4D1-A4A7-86EC0ACFEE29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6942490A-DEEC-C4D1-A4A7-86EC0ACFEE29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6942490A-DEEC-C4D1-A4A7-86EC0ACFEE29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6942490A-DEEC-C4D1-A4A7-86EC0ACFEE29}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Assembly-CSharp.csproj
 	EndGlobalSection
 EndGlobal
