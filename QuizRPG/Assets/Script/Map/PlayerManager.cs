@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour {
 
-    public int square_num;
-    public List<GameObject> SquareList = new List<GameObject>();
-    private Vector3 pushMouseButtonPos = new Vector3(0.0f, 0.0f, 0.0f);
+    public int square_num;                                                  /* ステージのマス数 */
+    public int current_square_num;                                          /* 現在のマス位置 */
+    public List<GameObject> SquareList = new List<GameObject>();            /* マスマネージャ格納リスト */
+    private Vector3 pushMouseButtonPos = new Vector3(0.0f, 0.0f, 0.0f);     /* マウス押下時座標 */
 
-    const float CLICK_RANGE = 0.45f;
+    [SerializeField]
+    private List<int> next_square_list = new List<int>();                   /* 次移動可能マス番号 */
+
+    const float CLICK_RANGE = 0.45f;                                        /* クリック判定範囲　*/
 
     // Use this for initialization
     void Start () {
@@ -25,6 +29,7 @@ public class PlayerManager : MonoBehaviour {
         ClickObjectCheck();
     }
 
+    /* クリック時オブジェクトがあるかチェック */
     private void ClickObjectCheck()
     {
         GameObject obj = null;
@@ -46,7 +51,29 @@ public class PlayerManager : MonoBehaviour {
                 if ((pushMouseButtonPos.x - obj.transform.position.x) < CLICK_RANGE && (pushMouseButtonPos.x - obj.transform.position.x) > -CLICK_RANGE
                     && (pushMouseButtonPos.y - obj.transform.position.y) < CLICK_RANGE && (pushMouseButtonPos.y - obj.transform.position.y) > -CLICK_RANGE)
                 {
-                    transform.position = obj.transform.position;
+                    int i, j;
+                    /* 移動可能マスチェック */
+                    for (i = 0; i < next_square_list.Count; i++)
+                    {
+                        if (next_square_list[i] == obj.GetComponent<SquareManager>().square_num)
+                        {
+                            break;
+                        }
+                    }
+
+                    /* もし一致するものがあるならば */
+                    if(i < next_square_list.Count)
+                    {
+                        transform.position = obj.transform.position;
+                        current_square_num = obj.GetComponent<SquareManager>().square_num;
+
+                        /* 次のマスリストセット */
+                        next_square_list.Clear();
+                        for (j = 0; j < obj.GetComponent<SquareManager>().GetNextSquareCount(); j++)
+                        {
+                            next_square_list.Add(obj.GetComponent<SquareManager>().GetNextSquareNum(j));
+                        }
+                    }
                 }
             }
         }

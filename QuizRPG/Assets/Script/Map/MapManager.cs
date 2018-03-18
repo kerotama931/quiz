@@ -7,7 +7,6 @@ public class MapManager : MonoBehaviour {
     public GameObject backGround_right_top;
     public GameObject backGround_left_top;
     public GameObject[] Square = new GameObject[8];
-    public SquareManager squareManager;
 
     private Vector2 MousePosDownPrev;   /* マウス押下中の座標（ひとつ前） */
     private Vector2 MousePosDown;       /* マウス押下中の座標 */
@@ -54,22 +53,3 @@ public class MapManager : MonoBehaviour {
 
     }
 }
-
-
-public class SquareManager
-{
-    private GameObject Square;
-    private List<int> nextSquareList = new List<int>();
-
-    SquareManager(GameObject square, int[] nextSquare)
-    {
-        Square = square;
-
-        int i;
-        for (i = 0; i < nextSquare.Length; i++)
-        {
-            nextSquareList.Add(nextSquare[i]);
-        }
-    }
-
-};
